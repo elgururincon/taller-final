@@ -1,3 +1,15 @@
+/*
+# Solution for a class exercise.
+#
+# Created by Cristian David Rincon on June 2017.
+# Copyright (c) 2017  Cristian David Rincon. All rights reserved.
+#
+# This file is part of DataStructures course.
+#
+# DataStructuresCourse is free software: you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 2.
+*/
+
 
 tablero = [1,2,3,4,5,6,7,8,9]                               # creacion del tablero
 
