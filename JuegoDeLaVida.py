@@ -1,10 +1,22 @@
+/*
+# Solution for a class exercise.
+#
+# Created by Cristian David Rincon on June 2017.
+# Copyright (c) 2017  Cristian David Rincon. All rights reserved.
+#
+# This file is part of DataStructures course.
+#
+# DataStructuresCourse is free software: you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 2.
+*/
 
 import random                                       # importar modulo random
 import time                                         # importar modulo time
 
 class JuegoDeLaVida():                              # creacion de clase principal
 
-### inicia los atributos del objeto que creamos. se llama automáticamente.Es decir es imposible de olvidarse de     llamarlo ya que se llamará automáticamente. atributos fila y columna.
+### El método __init__ es un método especial de una clase en Python. El objetivo fundamental del 
+### método __init__ es inicializar los atributos del objeto que creamos.
     
     def __init__(self, fila, columna):
 
