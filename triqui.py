@@ -12,13 +12,13 @@ impTablero()                                                # imprime tablero
 
 
                                                             # 0 es el valor del empate
-MAX = 1                                                     # valor para cuando gana la CPU
-MIN = -1                                                    # valor para cuando gana el usuario
+CPU = 1                                                     # valor para cuando gana la CPU
+USUARIO = -1                                                # valor para cuando gana el usuario
 global jugadaCpu                                            # define una variable global que se utiliza en todo el codigo
  
 def valor(tablero, jugador):
     global jugadaCpu
-    if finJuego(tablero):                                   # este pregunta si hay  ganador?
+    if finJuego(tablero):                                   # este pregunta si ya existe un ganador?
         return [ganador(tablero), 0]
     movimientos=[]                                          # crea un grupo donde se pueden guardar las  posibles jugadas
     for jugada in range(0,len(tablero)):                    #para cada jugada en el tablero se crea un tablero auxiliar
@@ -29,12 +29,12 @@ def valor(tablero, jugador):
             puntuacion = valor(tableroaux, jugador*(-1))
             movimientos.append([puntuacion, jugada])        # Guarda la jugada dentro del grupo de posiblies jugadas
   
-    if jugador == MAX:                                       
-        movimiento = max(movimientos)
-        jugadaCpu = movimiento[1]
+    if jugador == CPU:                                      # si es el turno de la cpu
+        movimiento = max(movimientos)                       # agrega el maximo valor a movimienos
+        jugadaCpu = movimiento[1]                           # agrega la jugada al indice de la lista arreglos
         return movimiento
     else:
-        movimiento = min(movimientos)
+        movimiento = min(movimientos)                        # agrega el minimo valor a movimientos
         return movimiento[0]
  
  
@@ -60,9 +60,9 @@ def ganador(tablero):                                       # funcion que recopi
 def dibujatablero(tablero):                                 # ingresa una x en el espacio que selecciona el usuario
     for i in range(0,3):                                    #--- y ingresa una o en el espacio que la cpu seleccione
         for j in range(0,3):                                #--- de caso contrario deja un punto (.)
-            if tablero[i*3+j] == MAX:                       
+            if tablero[i*3+j] == CPU:                       
                 print 'O',
-            elif tablero[i*3+j] == MIN:
+            elif tablero[i*3+j] == USUARIO:
                 print 'X',
             else:
                 print '.',
@@ -75,14 +75,14 @@ def turnoUsuario(tablero):                                  # decalara funcion d
         if str(espacio) in '0123456789' and len(str(espacio)) == 1 and tablero[espacio-1] == 0:
             if espacio == 0:
                 break;                                      # termina con el turno del jugador
-            tablero[espacio-1]=MIN                          # testa una opcion del tablero para la cpu
+            tablero[espacio-1]=USUARIO                      # testa una opcion del tablero para la cpu
             turno1=True                                     # declara que el turno del jugador termina
     return tablero                                          # retorna tablero
  
 def turnoCpu(tablero):                                      # declara funcion de jugada de la cpu
     global jugadaCpu                                        
-    puntuacion = valor(tablero[:], MAX)
-    tablero[jugadaCpu] = MAX
+    puntuacion = valor(tablero[:], CPU)
+    tablero[jugadaCpu] = CPU
     return tablero
 
 def inicioJuego():
@@ -104,7 +104,7 @@ def inicioJuego():
     resultado = ganador(tablero)
     if resultado == 0:
         gana = 'Empate'
-    elif resultado == MIN:
+    elif resultado == USUARIO:
         gana = 'Gana usuario'
     else:
         gana = 'Gana Cpu' 
