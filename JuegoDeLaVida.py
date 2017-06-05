@@ -40,29 +40,27 @@ class JuegoDeLaVida():                              # creacion de clase principa
 
         total = 0                                         # contador total de vecinos
         
-        # r --> distancia de fila
-        # c --> distancia de culumna
-        for r, c in distancia:
-            if limite(r + fila, c + columna):                 # valida la condicion de los vecinos
-                total += self.juego[r + fila][c + columna]    # agrega valor al contador total 
+        # df --> distancia de fila
+        # dc --> distancia de culumna
+        for df, dc in distancia:
+            if limite(df + fila, dc + columna):                 # valida la condicion de los vecinos
+                total += self.juego[df + fila][dc + columna]    # agrega valor al contador total 
         return total
 
     def recorrido(self):                                  # metodo que define el recorrido 
 
         gameaux = self.juego
-        self.vivo = 0                                     # contador de vecinos vivos 
-        self.muerto = 0                                   # contador de vecinos muertos
+        
+        for df in range(self.fila):                        
+            for dc in range(self.columna):
+                total = self.vecinos(df, dc)
 
-        for r in range(self.fila):                        
-            for c in range(self.columna):
-                total = self.vecinos(r, c)
-
-                if (total < 2 or total > 3) and gameaux[r][c]:                # condicion de validacion
-                    gameaux[r][c] = 0                                         # muere o sigue muerta
-                    self.muerto += 1                                          # agrega 1 al contador de muertos
-                elif total == 3 and not gameaux[r][c]:                        # condicion de validacion
-                    gameaux[r][c] = 1                                         # vive o sigue viva
-                    self.vivo += 1                                            # agrega 1 al contador de vivos
+                if (total < 2 or total > 3) and gameaux[df][dc]:                # condicion de validacion
+                    gameaux[df][dc] = 0                                         # muere o sigue muerta
+                    
+                elif total == 3 and not gameaux[df][dc]:                        # condicion de validacion
+                    gameaux[df][dc] = 1                                         # vive o sigue viva
+                    
 
 
 fila = int(input("numero de filas >> "))                      # preguntamos al usuario cantidad de filas
