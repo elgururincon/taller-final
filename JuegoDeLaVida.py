@@ -15,8 +15,7 @@ import time                                         # importar modulo time
 
 class JuegoDeLaVida():                              # creacion de clase principal
 
-### El método __init__ es un método especial de una clase en Python. El objetivo fundamental del 
-### método __init__ es inicializar los atributos del objeto que creamos.
+### inicia los atributos del objeto que creamos. se llama automáticamente.Es decir es imposible de olvidarse de     llamarlo ya que se llamará automáticamente. atributos fila y columna.
     
     def __init__(self, fila, columna):
 
@@ -61,18 +60,20 @@ class JuegoDeLaVida():                              # creacion de clase principa
 
     def recorrido(self):                                  # metodo que define el recorrido 
 
-        gameaux = self.juego
-        
+        gameaux = self.juego                              # crea una copia de juego
+        self.vivo = 0                                     # contador de vecinos vivos 
+        self.muerto = 0                                   # contador de vecinos muertos
+
         for df in range(self.fila):                        
             for dc in range(self.columna):
                 total = self.vecinos(df, dc)
 
                 if (total < 2 or total > 3) and gameaux[df][dc]:                # condicion de validacion
                     gameaux[df][dc] = 0                                         # muere o sigue muerta
-                    
+                    self.muerto += 1                                          # agrega 1 al contador de muertos
                 elif total == 3 and not gameaux[df][dc]:                        # condicion de validacion
                     gameaux[df][dc] = 1                                         # vive o sigue viva
-                    
+                    self.vivo += 1                                            # agrega 1 al contador de vivos
 
 
 fila = int(input("numero de filas >> "))                      # preguntamos al usuario cantidad de filas
