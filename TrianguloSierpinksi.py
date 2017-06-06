@@ -26,9 +26,9 @@ def imprimeTablero(array):
 	tablero = ''
 	for i in range(0, base):
 		if array[i] == 0:
-			tablero += ' '
+			tablero += ' . '
 		else:
-			tablero += 'X'
+			tablero += ' ● '
 	print tablero
 
 def siguienteNivel(nivelActual):
